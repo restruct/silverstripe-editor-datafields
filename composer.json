@@ -1,0 +1,33 @@
+{
+    "name": "restruct/silverstripe-editor-datafields",
+    "type": "silverstripe-vendormodule",
+    "description": "TinyMCE plugin to have placeholder contents in HTMLEditor which can be live-update based on external data (static/live, eg dropdowns with options)",
+    "keywords": [
+        "silverstripe",
+        "tinymce",
+        "placeholders"
+    ],
+    "license": "MIT License",
+    "authors": [
+        {
+            "name": "Restruct web & apps",
+            "email": "dev@restruct.nl",
+            "homepage": "http://restruct.nl"
+        }
+    ],
+    "require": {
+        "silverstripe/vendor-plugin": "^1",
+        "silverstripe/framework": "^4"
+    },
+    "extra": {
+        "installer-name": "editor-datafields",
+        "expose": [
+            "client"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "Restruct\\HTMLEditor\\DataFields\\": "src/"
+        }
+    }
+}

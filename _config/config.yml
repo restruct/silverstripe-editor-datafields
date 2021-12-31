@@ -1,0 +1,10 @@
+#SilverStripe\Admin\LeftAndMain:
+#  extra_requirements_javascript:
+#    - 'restruct/silverstripe-editor-datafields:client/js/datafields_editorplugin.js'
+#    -
+#    - 'editor-datafields/javascript/datafields.js'
+#  extra_requirements_css:
+#    - 'shortcodable/css/shortcodable.css'
+#Director:
+#  rules:
+#    ShortcodableController: ShortcodableController
