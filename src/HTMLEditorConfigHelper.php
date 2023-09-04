@@ -49,7 +49,7 @@ class HTMLEditorConfigHelper extends TinyMCEConfig
 //                    'datafields' => sprintf('../../../%s/js/datafields.js', DATAFIELDS_DIR),
                     'datafields' => $jsUrl,
                 ))
-            ->addButtonsToLine(2, 'datafields')
+            ->addButtonsToLine(2, [ 'datafields' ])
 //            ->setOption('extended_valid_elements', 'strong[contenteditable]')
         ;
     }
@@ -67,7 +67,7 @@ class HTMLEditorConfigHelper extends TinyMCEConfig
 //                    'datafields' => sprintf('../../../%s/js/datafields.js', DATAFIELDS_DIR),
                     'mergetags' => $jsUrl,
                 ))
-            ->addButtonsToLine(2, 'mergetags')
+            ->addButtonsToLine(2, [ 'mergetags' ])
 //            ->setOption('extended_valid_elements', 'strong[contenteditable]')
         ;
     }

@@ -56,7 +56,7 @@ var datafields_editorplugin = {
         // update token-values with static-values if defined: array( array('field' => [token-field], 'value' => 'fixed-value'), array( ...
         if(jQuery && jQuery(editor.getElement()).data('datafields-static-tokenvalues')) {
             var statVals = jQuery(editor.getElement()).data('datafields-static-tokenvalues');
-            for(j in statVals){
+            for(var j in statVals){
                 for(i in this.tokens){
                     if(this.tokens[i].field == statVals[j].field ) { //&& statVals[j].field!=''
                         this.tokens[i].value = statVals[j].value;
@@ -105,12 +105,14 @@ var datafields_editorplugin = {
         // add some styling
         editor.contentStyles
             .push('strong[data-datafield], span[data-datafield] { ' +
+                    'user-select: none;' +
                     'background-color: rgb(255,235,60); ' +
                     'background-color: rgba(255,235,60,.5); ' +
                     'border-radius: 4px; ' +
                     'padding: 1px 1px; border: 1px dashed #EFDB3B; ' +
                     'margin-right: 2px; ' +
                     '}' +
+                // data-mce-selected works only in TinyMCE4+(?)
                   'strong[data-datafield][data-mce-selected]:before, span[data-datafield][data-mce-selected]:before {' +
                     'content: "double-click to edit (will not be auto-updated anymore)";' +
                     'position: absolute;' +
@@ -160,25 +162,26 @@ var datafields_editorplugin = {
         // var FormVals = this.$form.serialize();
 // console.log(this.dynamicTokenMap);
         // loop over all dynamic inputs:
-        for(j in this.dynamicTokenMap){
+        for(var j in this.dynamicTokenMap){
             var $dynInput = jQuery('[name="'+ this.dynamicTokenMap[j].inputname +'"]');
 // console.log(this.dynamicTokenMap[j].inputname);
             if($dynInput.length){ // if input found in dynamicTokenMap
 
                 // update token value
-                for(i in this.tokens){ // find token
+                for(var i in this.tokens){ // find token
 
                     if(this.tokens[i].field == $dynInput.data('datafields-dynamic-maptotoken')) {
                         // console.log(this.tokens[i].field);
                         // get input value element (switch per input type and property to display)
                         var value = '';
+                        var displayvaluemap = null;
                         // @TODO: handle checkboxes/multi selects and radios
                         if ($dynInput.is('select')) {
                             // display selected TEXT value for selects
                             value = $dynInput.find('option:selected').text();
                             // or get value from json map on selector
                             if ($dynInput.data('datafields-dynamic-displayvaluemap')) {
-                                var displayvaluemap = $dynInput.data('datafields-dynamic-displayvaluemap');
+                                displayvaluemap = $dynInput.data('datafields-dynamic-displayvaluemap');
                                 value = displayvaluemap[$dynInput.find('option:selected').val()];
                                 // additional option: get value from different field for selected option;
                                 // console.log(value);
@@ -198,11 +201,11 @@ var datafields_editorplugin = {
                                 if(visibleInput.length){
                                     value = visibleInput.val();
                                 }
-                            };
+                            }
                             // or get value from json map on input (eg on autocomplete fields)
                             if ($dynInput.data('datafields-dynamic-displayvaluemap')) {
-                                var displayvaluemap = $dynInput.data('datafields-dynamic-displayvaluemap');
-                                value = displayvaluemap[value];
+                                displayvaluemap = $dynInput.data('datafields-dynamic-displayvaluemap');
+                                value = displayvaluemap[value]; // @TODO: weird re-assigning of 'value' going on here?
                             }
                         }
 
