@@ -33,8 +33,9 @@ The array should have field-value pairs ( [{"field":"Contact.FirstName","value":
         if($letterField && $staticFieldsJson) $letterField->setAttribute('data-datafields-static-tokenvalues', $staticFieldsJson);
 ```
 
-Dynamic fields are live-updated. They are listening to, and get their content from the value an <input> or <select>.
-The array should have field-inputname pairs ( [{"field":"Contact.FirstName","value":"Voornaam (ontv.)"},{"field":... )
+Dynamic fields are live-updated. They are listening to, and get their content from the value an `<input>` or `<select>`.  
+The array should have field-inputname pairs ( `[{"field":"Contact.FirstName","value":"Voornaam (ontv.)"},{"field":...` )
+
 ```php
 ...
         //
@@ -57,8 +58,9 @@ The array should have field-inputname pairs ( [{"field":"Contact.FirstName","val
 //        $emailfield->setAttribute('data-datafields-dynamic-tokenvalueselectors',
 ```
 
-Dynamic field-values can optionally be translated/mapped from a json array on the specific input (data-datafields-dynamic-displayvaluemap):
+Dynamic field-values can optionally be translated/mapped from a json array on the specific input (`data-datafields-dynamic-displayvaluemap`).
 This way, for example a short description can be shown in the dropdow (eg 'Location Amsterdam'), while a longer (even multi-line) value can be inserted in the editor (eg the full location address spanning multiple lines).
+
 ```
     $someDropdownField->setAttribute('data-datafields-dynamic-displayvaluemap', json_encode($reasons->map('ID','FullAddress')->toArray()))
 ```
